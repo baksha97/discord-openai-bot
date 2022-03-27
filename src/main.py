@@ -68,8 +68,8 @@ async def on_message(message):
         message_reply = ''
         for engine_name in ENGINES.keys():
             message_reply += f'`${engine_name}`: {ENGINES[engine_name]["description"]}\n'
-        message_reply += 'You can use any of these engines above using $<engine_name> <actual prompt>.\n'
-        message_reply += 'Cost breakdown davinci > curie > babbage > ada.'
+        message_reply += 'Usage: `$<engine_name> <actual prompt>`.\n'
+        message_reply += 'Costs: `davinci` > `curie` > `babbage` > `ada`.'
         await message.channel.send(message_reply)
         return
 
@@ -78,6 +78,7 @@ async def on_message(message):
             prompt = message.content.replace(f'${engine_name} ', '')
             message_reply = generate_response(prompt=prompt, engine=engine_name)
             await message.channel.send(message_reply)
+            return
 
 
 bot.run(DISCORD_BOT_TOKEN)
