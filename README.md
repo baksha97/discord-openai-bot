@@ -1,6 +1,6 @@
 # OpenAi Discord Bot
 
-## Commands****
+## Commands
 `$davinci` 
 - Davinci is the most capable engine and can perform any task the other models can perform and often with less instruction.
 - Good at: Complex intent, cause and effect, summarization for audience
