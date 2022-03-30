@@ -46,7 +46,7 @@ def generate_response(
         prompt: str,
         engine: str,
         temperature: float = 0.8,
-        max_tokens: int = 120
+        max_tokens: int = 256
 ) -> str:
     response = openai.Completion.create(
         engine=ENGINES[engine]['id'],
