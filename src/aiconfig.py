@@ -50,7 +50,7 @@ Good at: Parsing text, simple classification, address correction, keywords
 def generate_response(
         prompt: str,
         engine: str,
-        temperature: float = 0.8,
+        temperature: float = 0.6,
         max_tokens: int = 256
 ) -> str:
     response = openai.Completion.create(
