@@ -21,6 +21,14 @@
 - Ada is usually the fastest model and can perform tasks like parsing text, address correction and certain kinds of classification tasks that don’t require too much nuance. Ada’s performance can often be improved by providing more context.
 - Good at: Parsing text, simple classification, address correction, keywords
 
+`$davinci-code`:
+- Most capable Codex model. Particularly good at translating natural language to code. 
+- In addition to completing code, also supports inserting completions within code.
+
+`cushman-code`:
+- Almost as capable as Davinci Codex, but slightly faster. 
+- This speed advantage may make it preferable for real-time applications.
+
 You can use any of these engines above using `$<engine_name> <actual prompt>`.
 
 ### Cost breakdown
