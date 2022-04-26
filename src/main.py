@@ -19,18 +19,18 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.content.startswith('$help'):
+    if message.content.startswith('help'):
         message_reply = ''
         for engine in AVAILABLE_ENGINES:
-            message_reply += f'`${engine.name}`: {engine.description}\n'
-        message_reply += 'Usage: `$<engine_name> <actual prompt>`.\n'
+            message_reply += f'`!{engine.name}`: {engine.description}\n'
+        message_reply += 'Usage: `!<engine_name> <actual prompt>`.\n'
         message_reply += 'Costs: `davinci` > `curie` > `babbage` > `ada`.'
         await message.channel.send(message_reply)
         return
 
     for engine in AVAILABLE_ENGINES:
-        if message.content.startswith(f'${engine.name} '):
-            prompt = message.content.replace(f'${engine.name} ', '')
+        if message.content.startswith(f'!{engine.name} '):
+            prompt = message.content.replace(f'!{engine.name} ', '')
             message_reply = generate_response(prompt=prompt, engine=engine)
             await message.channel.send(message_reply)
             return
