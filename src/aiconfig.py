@@ -9,7 +9,7 @@ class Engine:
     description: str
 
 
-DAVINCI = Engine(name='davinci', engine_id='code-davinci-002', description='''
+DAVINCI = Engine(name='davinci', engine_id='text-davinci-002', description='''
 Davinci is the most capable engine and can perform any task the other models can perform and often with less instruction.
 Good at: Complex intent, cause and effect, summarization for audience
 ''')
