@@ -12,3 +12,4 @@ __pycache__
 .idea/
 src/workspace.code-workspace
 Playground.ipynb
+.devcontainer/
