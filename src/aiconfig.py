@@ -76,6 +76,7 @@ def generate_image_url(
             n=1,
             size=size
         )
+        print(response)
         return response['data'][0]['url']
     except Exception as e:
         logging.debug(e, exc_info=True)
@@ -86,7 +87,7 @@ def generate_variation_image_url(
         image_url: str,
         size: str = "512x512"
 ) -> str:
-    logging.debug(image_url)
+    print(image_url)
     try:
         image = urllib.request.urlopen(image_url)
         response = openai.Image.create_variation(
@@ -94,8 +95,8 @@ def generate_variation_image_url(
             n=1,
             size=size
         )
+        print(response)
         return response['data'][0]['url']
     except Exception as e:
         logging.debug(e, exc_info=True)
         return repr(e)
-   
