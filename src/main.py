@@ -2,7 +2,7 @@ import discord
 import openai
 from dotenv import dotenv_values
 
-from aiconfig import generate_response, generate_image_url, AVAILABLE_ENGINES
+from aiconfig import generate_response, generate_image_url, generate_variation_image_url, AVAILABLE_ENGINES
 
 config = dotenv_values(".env")
 COMMAND_PREFIX = "!"
@@ -40,6 +40,12 @@ async def on_message(message):
     if message.content.startswith(f'{COMMAND_PREFIX}image '):
         prompt = message.content.replace(f'{COMMAND_PREFIX}image ', '')
         message_reply = generate_image_url(prompt=prompt)
+        await message.channel.send(message_reply)
+        return
+
+    if message.content.startswith(f'{COMMAND_PREFIX}variation-url '):
+        image_url = message.content.replace(f'{COMMAND_PREFIX}variation-url ', '')
+        message_reply = generate_variation_image_url(image_url=image_url)
         await message.channel.send(message_reply)
         return
 

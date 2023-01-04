@@ -1,5 +1,8 @@
-import openai
+import logging
+import urllib.request
 from dataclasses import dataclass
+
+import openai
 
 
 @dataclass(frozen=True)
@@ -66,9 +69,34 @@ def generate_image_url(
         prompt: str,
         size: str = "512x512"
 ) -> str:
-    response = openai.Image.create(
-        prompt=prompt,
-        n=1,
-        size=size
-    )
-    return response['data'][0]['url']
+    print(prompt)
+    try:
+        response = openai.Image.create(
+            prompt=prompt,
+            n=1,
+            size=size
+        )
+        print(response)
+        return response['data'][0]['url']
+    except Exception as e:
+        logging.debug(e, exc_info=True)
+        return repr(e)
+
+
+def generate_variation_image_url(
+        image_url: str,
+        size: str = "512x512"
+) -> str:
+    print(image_url)
+    try:
+        image = urllib.request.urlopen(image_url)
+        response = openai.Image.create_variation(
+            image=image,
+            n=1,
+            size=size
+        )
+        print(response)
+        return response['data'][0]['url']
+    except Exception as e:
+        logging.debug(e, exc_info=True)
+        return repr(e)
