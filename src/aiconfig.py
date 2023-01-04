@@ -60,3 +60,15 @@ def generate_response(
         max_tokens=max_tokens
     )
     return response.choices[0].text
+
+
+def generate_image_url(
+        prompt: str,
+        size: str = "512x512"
+) -> str:
+    response = openai.Image.create(
+        prompt=prompt,
+        n=1,
+        size=size
+    )
+    return response['data'][0]['url']

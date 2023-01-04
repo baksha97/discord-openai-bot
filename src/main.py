@@ -2,7 +2,7 @@ import discord
 import openai
 from dotenv import dotenv_values
 
-from aiconfig import generate_response, AVAILABLE_ENGINES
+from aiconfig import generate_response, generate_image_url, AVAILABLE_ENGINES
 
 config = dotenv_values(".env")
 COMMAND_PREFIX = "!"
@@ -25,6 +25,7 @@ async def on_message(message):
         for engine in AVAILABLE_ENGINES:
             message_reply += f'`{COMMAND_PREFIX}{engine.name}`: {engine.description}\n'
         message_reply += f'Usage: `{COMMAND_PREFIX}<engine_name> <actual prompt>`.\n'
+        message_reply += f'Usage: `{COMMAND_PREFIX}image <image prompt>`.\n'
         message_reply += 'Costs: `davinci` > `curie` > `babbage` > `ada`.'
         await message.channel.send(message_reply)
         return
@@ -36,5 +37,10 @@ async def on_message(message):
             await message.channel.send(message_reply)
             return
 
+    if message.content.startswith(f'{COMMAND_PREFIX}image '):
+        prompt = message.content.replace(f'{COMMAND_PREFIX}image ', '')
+        message_reply = generate_image_url(prompt=prompt)
+        await message.channel.send(message_reply)
+        return
 
 bot.run(DISCORD_BOT_TOKEN)

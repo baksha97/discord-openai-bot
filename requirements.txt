@@ -1,4 +1,4 @@
-openai
+openai==0.25.0
 matplotlib
 beautifulsoup4==4.10.0
 numpy==1.21.0
