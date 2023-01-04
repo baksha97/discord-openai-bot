@@ -69,7 +69,7 @@ def generate_image_url(
         prompt: str,
         size: str = "512x512"
 ) -> str:
-    logging.debug(prompt)
+    print(prompt)
     try:
         response = openai.Image.create(
             prompt=prompt,
